@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     motordriver.cpp \
     qmotorreport.cpp \
     qword.cpp \
-    qdaqcard.cpp
+    qdaqcard.cpp \
+    qcandevice.cpp
 
 HEADERS  += mainwindow.h \
     csqldatabase.h \
@@ -31,7 +32,8 @@ HEADERS  += mainwindow.h \
     qmotorreport.h \
     qword.h \
     D2kDask.h \
-    qdaqcard.h
+    qdaqcard.h \
+    qcandevice.h
 
 FORMS    += mainwindow.ui
 
@@ -39,6 +41,8 @@ QT += sql
 
 LIBS += -LC:/4nmflywheel/4nmflywheel -lD2K-Dask
 #LIBS += -LC:/mycode/motionStudio -ltmlcomm
+LIBS += -lAdsCAN
+
 
 QT += serialport
 RC_ICONS = favicon.ico

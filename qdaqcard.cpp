@@ -62,6 +62,7 @@ void QDaqcard::readAllChannel()
 //采集浪涌电流，channel从0-6，pointnum为采集数量
 void QDaqcard::getSurgeCurrent(U16 channel,QVector<double> &v,int point_num)
 {
+    if (!is_init_) return;
     F64 chan_voltage;
     v.resize(point_num);
 
@@ -87,6 +88,7 @@ void QDaqcard::getSurgeCurrent(U16 channel,QVector<double> &v,int point_num)
 //status: open = true,close=false
 void QDaqcard::setDOPort(uint port, bool status)
 {
+    if (!is_init_) return;
     switch (port) {
     case 1:
         if (status)

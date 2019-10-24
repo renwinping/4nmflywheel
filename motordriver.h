@@ -46,7 +46,6 @@ public:
 
 signals:
     void sendErrText(QString);
-
     void sendMotorSpd(double);
     void sendMotorCur(double);
     void sendMotorTmp(double);
