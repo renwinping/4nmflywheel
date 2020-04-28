@@ -1,4 +1,4 @@
-#include "motor.h"
+﻿#include "motor.h"
 
 
 QList<double> Motor::getNoAirTestUnit() const

@@ -1,4 +1,4 @@
-#include "csqldatabase.h"
+﻿#include "csqldatabase.h"
 
 SqlDataBase::SqlDataBase(QObject *parent) : QObject(parent)
 {

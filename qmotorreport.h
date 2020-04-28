@@ -1,4 +1,4 @@
-#ifndef QMOTORREPORT_H
+﻿#ifndef QMOTORREPORT_H
 #define QMOTORREPORT_H
 
 #include <QObject>

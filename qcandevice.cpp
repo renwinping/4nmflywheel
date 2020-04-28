@@ -1,4 +1,4 @@
-#include "qcandevice.h"
+﻿#include "qcandevice.h"
 
 QCanDevice::QCanDevice(QObject *parent) : QObject(parent)
 {
@@ -34,7 +34,7 @@ void QCanDevice::recoveryFrame(uint target)
 {
     msg.dlen = 8;
     msg.id = 0;
-    msg.rtr =
+    //msg.rtr =
 
 }
 

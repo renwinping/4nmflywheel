@@ -1,4 +1,4 @@
-#include "qword.h"
+ï»¿#include "qword.h"
 #include <QDateTime>
 #include <QFileDialog>
 #include <QFile>
@@ -11,7 +11,7 @@
 
 QWord::QWord(QObject *parent)
 {		
-    CoInitializeEx(NULL,COINIT_MULTITHREADED);//½â¾ö·ÇÖ÷Ïß³ÌÎÞ·¨µ÷ÓÃwordÎÊÌâ
+    CoInitializeEx(NULL,COINIT_MULTITHREADED);//è§£å†³éžä¸»çº¿ç¨‹æ— æ³•è°ƒç”¨wordé—®é¢˜
     m_word = new QAxObject(parent);
     m_documents = NULL;
     m_document = NULL;
@@ -24,7 +24,7 @@ QWord::~QWord()
     close();
 }
 
-bool QWord::createWord(QString reportname)		//´´½¨Ò»¸öÐÂµÄword
+bool QWord::createWord(QString reportname)		//åˆ›å»ºä¸€ä¸ªæ–°çš„word
 {
     QString ReportName= reportname;
     QString defaultFileName = QString("%1").arg(ReportName);
@@ -35,7 +35,7 @@ bool QWord::createWord(QString reportname)		//´´½¨Ò»¸öÐÂµÄword
     if(file.exists())
     {
         m_strError = tr("abnormal:the file already exists!");
-        //m_strError = QString::fromLocal8Bit("´íÎó£ºÄ¿±êÎÄ¼þÒÑ´æÔÚ!");
+        //m_strError = QString::fromLocal8Bit("é”™è¯¯ï¼šç›®æ ‡æ–‡ä»¶å·²å­˜åœ¨!");
         return false;
     }
     if(!m_saveName.isEmpty())
@@ -43,19 +43,19 @@ bool QWord::createWord(QString reportname)		//´´½¨Ò»¸öÐÂµÄword
         if(!m_word->setControl("Word.Application"))
         {
             m_strError = tr("abnormal:failed to get the word component,please make sure the word is installed!");
-            //m_strError = QString::fromLocal8Bit("´íÎó£º»ñÈ¡word×é¼þÊ§°Ü£¬ÇëÈ·¶¨ÊÇ·ñ°²×°ÁËword!");
+            //m_strError = QString::fromLocal8Bit("é”™è¯¯ï¼šèŽ·å–wordç»„ä»¶å¤±è´¥ï¼Œè¯·ç¡®å®šæ˜¯å¦å®‰è£…äº†word!");
             return false;
         }
         m_word->setProperty("Visible",false);
-        m_word->setProperty("DisplayAlerts", false);//²»ÏÔÊ¾ÈÎºÎ¾¯¸æÐÅÏ¢¡£Èç¹ûÎªtrueÄÇÃ´ÔÚ¹Ø±ÕÊÇ»á³öÏÖÀàËÆ¡°ÎÄ¼þÒÑÐÞ¸Ä£¬ÊÇ·ñ±£´æ¡±µÄÌáÊ¾
+        m_word->setProperty("DisplayAlerts", false);//ä¸æ˜¾ç¤ºä»»ä½•è­¦å‘Šä¿¡æ¯ã€‚å¦‚æžœä¸ºtrueé‚£ä¹ˆåœ¨å…³é—­æ˜¯ä¼šå‡ºçŽ°ç±»ä¼¼â€œæ–‡ä»¶å·²ä¿®æ”¹ï¼Œæ˜¯å¦ä¿å­˜â€çš„æç¤º
         m_documents = m_word->querySubObject("Documents");
         m_documents->dynamicCall("Add (void)");
-        m_document = m_word->querySubObject("ActiveDocument");//»ñÈ¡µ±Ç°¼¤»îµÄÎÄµµ
+        m_document = m_word->querySubObject("ActiveDocument");//èŽ·å–å½“å‰æ¿€æ´»çš„æ–‡æ¡£
         return true;
     }else
     {
         m_strError = tr("abnormal:the file name is empty!");
-        //m_strError = QString::fromLocal8Bit("´íÎó£ºÎÄ¼þÃûÎª¿Õ");
+        //m_strError = QString::fromLocal8Bit("é”™è¯¯ï¼šæ–‡ä»¶åä¸ºç©º");
         return false;
     }
 }
@@ -67,7 +67,7 @@ bool QWord::createNewWord(const QString& filePath )
     {
         file.remove(m_saveName);
         //m_strError = tr("error:the file already exists!");
-        //m_strError = QString::fromLocal8Bit("´íÎó£ºÄ¿±êÎÄ¼þÒÑ´æÔÚ!");
+        //m_strError = QString::fromLocal8Bit("é”™è¯¯ï¼šç›®æ ‡æ–‡ä»¶å·²å­˜åœ¨!");
         //return false;
     }
     if(!m_saveName.isEmpty())
@@ -75,7 +75,7 @@ bool QWord::createNewWord(const QString& filePath )
         if(!m_word->setControl("Word.Application"))
         {
             m_strError = tr("abnormal:failed to get the word component,please make sure the word is installed!");
-            //m_strError = QString::fromLocal8Bit("´íÎó£º»ñÈ¡word×é¼þÊ§°Ü£¬ÇëÈ·¶¨ÊÇ·ñ°²×°ÁËword!\n");
+            //m_strError = QString::fromLocal8Bit("é”™è¯¯ï¼šèŽ·å–wordç»„ä»¶å¤±è´¥ï¼Œè¯·ç¡®å®šæ˜¯å¦å®‰è£…äº†word!\n");
             return false;
         }
 //        bool bFlag = m_word->setControl("word.Application");
@@ -86,21 +86,21 @@ bool QWord::createNewWord(const QString& filePath )
 
 
         m_word->setProperty("Visible",false);
-        m_word->setProperty("DisplayAlerts", false);//²»ÏÔÊ¾ÈÎºÎ¾¯¸æÐÅÏ¢¡£Èç¹ûÎªtrueÄÇÃ´ÔÚ¹Ø±ÕÊÇ»á³öÏÖÀàËÆ¡°ÎÄ¼þÒÑÐÞ¸Ä£¬ÊÇ·ñ±£´æ¡±µÄÌáÊ¾
+        m_word->setProperty("DisplayAlerts", false);//ä¸æ˜¾ç¤ºä»»ä½•è­¦å‘Šä¿¡æ¯ã€‚å¦‚æžœä¸ºtrueé‚£ä¹ˆåœ¨å…³é—­æ˜¯ä¼šå‡ºçŽ°ç±»ä¼¼â€œæ–‡ä»¶å·²ä¿®æ”¹ï¼Œæ˜¯å¦ä¿å­˜â€çš„æç¤º
         m_documents = m_word->querySubObject("Documents");
         if(!m_documents)
         {
             m_strError = tr("abnormal:failed to get the documents!");
-            //m_strError = QString::fromLocal8Bit("»ñÈ¡ÎÄµµÊ§°Ü£¡\n");
+            //m_strError = QString::fromLocal8Bit("èŽ·å–æ–‡æ¡£å¤±è´¥ï¼\n");
             return false;
         }
         m_documents->dynamicCall("Add (void)");
-        m_document = m_word->querySubObject("ActiveDocument");//»ñÈ¡µ±Ç°¼¤»îµÄÎÄµµ
+        m_document = m_word->querySubObject("ActiveDocument");//èŽ·å–å½“å‰æ¿€æ´»çš„æ–‡æ¡£
         return true;
     }else
     {
         m_strError = tr("abnormal:the file name is empty!");
-        //m_strError = QString::fromLocal8Bit("´íÎó£ºÎÄ¼þÃûÎª¿Õ");
+        //m_strError = QString::fromLocal8Bit("é”™è¯¯ï¼šæ–‡ä»¶åä¸ºç©º");
         return false;
     }
 }
@@ -145,9 +145,9 @@ void QWord::save()
     else
         return;
 }
-void QWord::close()				//¹Ø±Õ ÍË³ö Îö¹¹Ê±ºòÒ²»á×Ô¶¯µ÷ÓÃÒ»´Î
+void QWord::close()				//å…³é—­ é€€å‡º æžæž„æ—¶å€™ä¹Ÿä¼šè‡ªåŠ¨è°ƒç”¨ä¸€æ¬¡
 {
-    if(!m_saveName.isEmpty())		//Èç¹û²»Îª¿Õ  ÔòÎªÐÂ½¨
+    if(!m_saveName.isEmpty())		//å¦‚æžœä¸ä¸ºç©º  åˆ™ä¸ºæ–°å»º
     {
         saveAs();
         m_saveName = "";
@@ -172,7 +172,7 @@ void QWord::saveAs()
         return;
 }
 
-void QWord::setPageOrientation(int flag)	//ÉèÖÃÒ³Ãæ1 ºáÏò   »¹ÊÇ 0ÊúÏò
+void QWord::setPageOrientation(int flag)	//è®¾ç½®é¡µé¢1 æ¨ªå‘   è¿˜æ˜¯ 0ç«–å‘
 {	
     QAxObject* selection = m_word->querySubObject("Selection");
     if(NULL== selection)
@@ -228,7 +228,7 @@ void QWord::setWordPageView(int flag)
     }
     viewPage->querySubObject("View")->setProperty("Type",view);
 }
-void QWord::insertMoveDown()				//²åÈë»Ø³µ
+void QWord::insertMoveDown()				//æ’å…¥å›žè½¦
 {
     QAxObject* selection  = m_word->querySubObject("Selection");
     if(NULL== selection)
@@ -258,7 +258,7 @@ QString QWord::GetText()
 
     return str;
 }
-//ÉèÖÃÑ¡ÖÐÎ»ÖÃÎÄ×Ö¾ÓÖÐ 0 ,¾Ó×ó 1,¾ÓÓÒ 2
+//è®¾ç½®é€‰ä¸­ä½ç½®æ–‡å­—å±…ä¸­ 0 ,å±…å·¦ 1,å±…å³ 2
 void QWord::setParagraphAlignment(int flag)
 {
     QAxObject* selection = m_word->querySubObject("Selection");
@@ -315,7 +315,7 @@ void QWord::setRowAlignment(int tableIndex,int row,int flag)
         range->querySubObject("ParagraphFormat")->setProperty("Alignment","wdAlignParagraphLeft");
     }
 }
-void QWord::setFontSize(int fontsize)		//ÉèÖÃ×ÖÌå´óÐ¡
+void QWord::setFontSize(int fontsize)		//è®¾ç½®å­—ä½“å¤§å°
 {
     QAxObject* selection = m_word->querySubObject("Selection");
     if(NULL== selection)
@@ -349,7 +349,7 @@ void QWord::setSelectionRange(int start,int end)
     {
         return;
     }
-    selection->dynamicCall("SetRange(int, int)", start,end);	//µÚ1¸ö×Ö·ûºó¿ªÊ¼£¬µ½µÚ9¸ö×Ö·û½áÊø·¶Î§
+    selection->dynamicCall("SetRange(int, int)", start,end);	//ç¬¬1ä¸ªå­—ç¬¦åŽå¼€å§‹ï¼Œåˆ°ç¬¬9ä¸ªå­—ç¬¦ç»“æŸèŒƒå›´
 }
 void QWord::getUsedRange(int *topLeftRow, int *topLeftColumn, int *bottomRightRow, int *bottomRightColumn)
 {
@@ -417,7 +417,7 @@ void QWord::intsertTable(int row,int column)
     {
         return;
     }
-    table->setProperty("Style","Íø¸ñÐÍ");
+    table->setProperty("Style","ç½‘æ ¼åž‹");
     QAxObject* Borders = table->querySubObject("Borders");
     if(NULL== Borders)
     {
@@ -458,7 +458,7 @@ void QWord::intsertTable(int tableIndex, int row,int column)
     {
         return;
     }
-    table->setProperty("Style","Íø¸ñÐÍ");
+    table->setProperty("Style","ç½‘æ ¼åž‹");
     QAxObject* Borders = table->querySubObject("Borders");
     if(NULL== Borders)
     {
@@ -475,16 +475,16 @@ void QWord::intsertTable(int tableIndex, int row,int column)
 
 void QWord::insertText(QString Tag, QString text)
 {
-    QAxObject *pBookMarkCode = m_document->querySubObject("Bookmarks(QVariant)", Tag);//»ñÈ¡Ö¸¶¨±êÇ©
+    QAxObject *pBookMarkCode = m_document->querySubObject("Bookmarks(QVariant)", Tag);//èŽ·å–æŒ‡å®šæ ‡ç­¾
     if (pBookMarkCode)
         {
-            pBookMarkCode->dynamicCall("Selection");//Ñ¡Ôñ¸ÃÖ¸¶¨±êÇ©
-            pBookMarkCode->querySubObject("Range")->setProperty("Text", text);//Íù±êÇ©´¦²åÈëÎÄ×Ö
+            pBookMarkCode->dynamicCall("Selection");//é€‰æ‹©è¯¥æŒ‡å®šæ ‡ç­¾
+            pBookMarkCode->querySubObject("Range")->setProperty("Text", text);//å¾€æ ‡ç­¾å¤„æ’å…¥æ–‡å­—
             delete pBookMarkCode;
         }
 }
 
-void QWord::setColumnWidth(int column, int width)		//ÉèÖÃÁÐ¿í
+void QWord::setColumnWidth(int column, int width)		//è®¾ç½®åˆ—å®½
 {
     QAxObject* selection = m_word->querySubObject("Selection");
     if(NULL== selection)
@@ -513,7 +513,7 @@ void QWord::setCellString(int nTable,int row,int column,const QString& text)
         ->dynamicCall("SetText(QString)",text);
     }
 }
-void QWord::MergeCells(int tableIndex, int nStartRow,int nStartCol,int nEndRow,int nEndCol)//ºÏ²¢µ¥Ôª¸ñ
+void QWord::MergeCells(int tableIndex, int nStartRow,int nStartCol,int nEndRow,int nEndCol)//åˆå¹¶å•å…ƒæ ¼
 {
     QAxObject* tables = m_document->querySubObject("Tables");
     if(NULL==tables)
@@ -541,8 +541,8 @@ void QWord::MergeCells(int tableIndex, int nStartRow,int nStartCol,int nEndRow,i
     }
 
 }
-//µÚ¶þÖÖ·½·¨µ÷ÓÃ
-// void QWord::MergeCells(int tableIndex, int nStartRow,int nStartCol,int nEndRow,int nEndCol)//ºÏ²¢µ¥Ôª¸ñ
+//ç¬¬äºŒç§æ–¹æ³•è°ƒç”¨
+// void QWord::MergeCells(int tableIndex, int nStartRow,int nStartCol,int nEndRow,int nEndCol)//åˆå¹¶å•å…ƒæ ¼
 // {
 //    QAxObject* tables = m_document->querySubObject("Tables");
 //    QAxObject* table = tables->querySubObject("Item(int)",tableIndex);
@@ -579,7 +579,7 @@ void QWord::setRowHeight(int nTable,int Row, int height)
     }
 }
 
-void QWord::setColumnHeight(int column, int height)		//ÉèÖÃÁÐ¸ß
+void QWord::setColumnHeight(int column, int height)		//è®¾ç½®åˆ—é«˜
 {
     QAxObject* selection = m_word->querySubObject("Selection");
     if(NULL== selection)
@@ -616,7 +616,7 @@ void QWord::setCellString(int row, int column, const QString& text)
     table->querySubObject("Cell(int, int)",row,column)->querySubObject("Range")->dynamicCall("SetText(QString)", text);
 }
 
-void QWord::setCellFontBold(int row, int column, bool isBold)	//ÉèÖÃÄÚÈÝ´ÖÌå  isBold¿ØÖÆÊÇ·ñ´ÖÌå
+void QWord::setCellFontBold(int row, int column, bool isBold)	//è®¾ç½®å†…å®¹ç²—ä½“  isBoldæŽ§åˆ¶æ˜¯å¦ç²—ä½“
 {
     QAxObject* selection = m_word->querySubObject("Selection");
     if(NULL== selection)
@@ -630,7 +630,7 @@ void QWord::setCellFontBold(int row, int column, bool isBold)	//ÉèÖÃÄÚÈÝ´ÖÌå  is
     }
     table->querySubObject("Cell(int, int)",row,column)->querySubObject("Range")->dynamicCall("SetBold(int)", isBold);
 }
-void QWord::setCellFontSize(int row, int column, int size)		//ÉèÖÃÎÄ×Ö´óÐ¡
+void QWord::setCellFontSize(int row, int column, int size)		//è®¾ç½®æ–‡å­—å¤§å°
 {
     QAxObject* selection = m_word->querySubObject("Selection");
     if(NULL== selection)
@@ -644,7 +644,7 @@ void QWord::setCellFontSize(int row, int column, int size)		//ÉèÖÃÎÄ×Ö´óÐ¡
     }
     table->querySubObject("Cell(int, int)",row,column)->querySubObject("Range")->querySubObject("Font")->setProperty("Size", size);
 }
-QVariant QWord::getCellValue(int row, int column)	//»ñÈ¡µ¥Ôª¸ñÄÚÈÝ ´Ë´¦¶ÔÓÚExcelÀ´ËµÁÐºÍÐÐ´Ó1¿ªÊ¼×îÉÙ
+QVariant QWord::getCellValue(int row, int column)	//èŽ·å–å•å…ƒæ ¼å†…å®¹ æ­¤å¤„å¯¹äºŽExcelæ¥è¯´åˆ—å’Œè¡Œä»Ž1å¼€å§‹æœ€å°‘
 {
     QAxObject* selection = m_word->querySubObject("Selection");
     QAxObject* table = selection->querySubObject("Tables(1)");
@@ -775,7 +775,7 @@ void QWord::addTableRow(int tableIndex ,int nRow,int rowCount)
         }
     }
 }
-////´´½¨±í¸ñ
+////åˆ›å»ºè¡¨æ ¼
 void QWord::insertTable(int tableIndex,int row,int column)
 {
 
@@ -806,7 +806,7 @@ void QWord::insertTable(int tableIndex,int row,int column)
     params.append(column);
     tables->querySubObject("Add(QAxObject*, int, int, QVariant&, QVariant&)", params);
     table = selection->querySubObject("Tables(int)",1);
-    table->setProperty("Style","Íø¸ñÐÍ");
+    table->setProperty("Style","ç½‘æ ¼åž‹");
 
     QAxObject* Borders = table->querySubObject("Borders");
     if(NULL==Borders)
@@ -816,7 +816,7 @@ void QWord::insertTable(int tableIndex,int row,int column)
     Borders->setProperty("InsideLineStyle",1);
     Borders->setProperty("OutsideLineStyle",1);
 }
-////ÉèÖÃ±í¸ñÁÐ¿í
+////è®¾ç½®è¡¨æ ¼åˆ—å®½
 void QWord::setColumnWidth(int nTable,int column,int width)
 {
     QAxObject* pTables =m_document->querySubObject("Tables");
@@ -833,7 +833,7 @@ void QWord::setColumnWidth(int nTable,int column,int width)
 }
 
 
-//ÔÚ±í¸ñÖÐ²åÈëÍ¼Æ¬
+//åœ¨è¡¨æ ¼ä¸­æ’å…¥å›¾ç‰‡
 void QWord::insertCellPic(int nTable,int row,int column,const QString& picPath)
 {
     QAxObject* pTables=m_document->querySubObject("Tables");
@@ -854,7 +854,7 @@ void QWord::insertCellPic(int nTable,int row,int column,const QString& picPath)
     range->querySubObject("InlineShapes")->dynamicCall("AddPicture(const QString&)",picPath);
 }
 
-//ÉèÖÃÄÚÈÝ´ÖÌå
+//è®¾ç½®å†…å®¹ç²—ä½“
 void QWord::setCellFontBold(int nTable,int row,int column,bool isBold)
 {
     QAxObject* pTables = m_document->querySubObject("Tables");
@@ -871,7 +871,7 @@ void QWord::setCellFontBold(int nTable,int row,int column,bool isBold)
 
 
 }
-//ÉèÖÃÎÄ×Ö´óÐ¡
+//è®¾ç½®æ–‡å­—å¤§å°
 void QWord:: setCellFontSize(int nTable,int row,int column,int size)
 {
     QAxObject* pTables=m_document->querySubObject("Tables");

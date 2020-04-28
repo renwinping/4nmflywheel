@@ -1,4 +1,4 @@
-#include "motordriver.h"
+﻿#include "motordriver.h"
 
 MotorDriver::MotorDriver(QObject *parent) : QObject(parent)
   ,isInit(false)

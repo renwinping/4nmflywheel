@@ -1,4 +1,4 @@
-#include "qdaqcard.h"
+﻿#include "qdaqcard.h"
 
 QDaqcard::QDaqcard(QObject *parent) : QObject(parent)
 {
