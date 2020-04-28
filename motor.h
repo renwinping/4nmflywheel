@@ -324,10 +324,10 @@ public slots:
             last_ten_vol_ += t;
         }
         last_ten_vol_ /= last_ten_vol_queue_.size();
-        //cal
+        //cal---comment by rwp 专业算法
         setAngularMomentum();
         setAngularMomentumConst();
-        setAngularMomentumDynamic();
+        setAngularMomentumDynamic();//设置角动量动态偏差
         setReactionMoment();
     }
 

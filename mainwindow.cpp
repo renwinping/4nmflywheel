@@ -141,9 +141,9 @@ void MainWindow::initDaqCard()
 
 void MainWindow::initCombox()
 {
-    ui->comboBox_motor_test_mode_1->addItem("速度模式");
-    ui->comboBox_motor_test_mode_1->addItem("力矩模式");
-    ui->comboBox_motor_test_mode_1->addItem("斜坡模式");
+    ui->comboBox_motor_test_mode_1->addItem(QString::fromLocal8Bit("速度模式"));
+    ui->comboBox_motor_test_mode_1->addItem(QString::fromLocal8Bit("力矩模式"));
+    ui->comboBox_motor_test_mode_1->addItem(QString::fromLocal8Bit("斜坡模式"));
 }
 
 //更新电机1---波形显示
@@ -158,7 +158,7 @@ void MainWindow::initQCustomPlot1()
         timeTicker->setTimeFormat("%m:%s"); // %h代表小时
         ui->qcp_motor_cur_1->xAxis->setTicker(timeTicker);
         ui->qcp_motor_cur_1->axisRect()->setupFullAxesBox();
-        ui->qcp_motor_cur_1->yAxis->setLabel("电流(A)");
+        ui->qcp_motor_cur_1->yAxis->setLabel(QString::fromLocal8Bit("电流(A)"));
 
         // make left and bottom axes transfer their ranges to right and top axes:
         connect( ui->qcp_motor_cur_1->xAxis, SIGNAL(rangeChanged(QCPRange)),  ui->qcp_motor_cur_1->xAxis2, SLOT(setRange(QCPRange)));
@@ -173,7 +173,7 @@ void MainWindow::initQCustomPlot1()
         ui->qcp_motor_spd_1->addGraph();
         ui->qcp_motor_spd_1->graph(1)->setPen(QPen(Qt::green));
 
-        ui->qcp_motor_spd_1->yAxis->setLabel("转速(rpm)");
+        ui->qcp_motor_spd_1->yAxis->setLabel(QString::fromLocal8Bit("转速(rpm)"));
 
         ui->qcp_motor_spd_1->xAxis->setTicker(timeTicker);
         ui->qcp_motor_spd_1->axisRect()->setupFullAxesBox();
@@ -185,7 +185,7 @@ void MainWindow::initQCustomPlot1()
         ui->qcp_motor_tmp_1->addGraph();
         ui->qcp_motor_tmp_1->graph(0)->setPen(QPen(Qt::red));
 
-        ui->qcp_motor_tmp_1->yAxis->setLabel("温度(℃)");
+        ui->qcp_motor_tmp_1->yAxis->setLabel(QString::fromLocal8Bit("温度(℃)"));
 
         ui->qcp_motor_tmp_1->xAxis->setTicker(timeTicker);
         ui->qcp_motor_tmp_1->axisRect()->setupFullAxesBox();
@@ -396,18 +396,18 @@ void MainWindow::on_comboBox_motor_test_mode_1_currentIndexChanged(int index)
 {
     switch (index) {
     case 0:
-        ui->label_setval_1->setText("设置速度");
-        ui->label_setval_right_1->setText("设置速度");
+        ui->label_setval_1->setText(QString::fromLocal8Bit("设置速度"));
+        ui->label_setval_right_1->setText(QString::fromLocal8Bit("设置速度"));
 //        ui->doubleSpinBox_motor_test_acc->setEnabled(false);
         break;
     case 1:
-        ui->label_setval_1->setText("设置力矩");
-        ui->label_setval_right_1->setText("设置力矩");
+        ui->label_setval_1->setText(QString::fromLocal8Bit("设置力矩"));
+        ui->label_setval_right_1->setText(QString::fromLocal8Bit("设置力矩"));
 //        ui->doubleSpinBox_motor_test_acc->setEnabled(false);
         break;
     case 2:
-        ui->label_setval_1->setText("设置速度");
-        ui->label_setval_right_1->setText("设置速度");
+        ui->label_setval_1->setText(QString::fromLocal8Bit("设置速度"));
+        ui->label_setval_right_1->setText(QString::fromLocal8Bit("设置速度"));
 //        ui->doubleSpinBox_motor_test_acc->setEnabled(true);
         break;
     default:
