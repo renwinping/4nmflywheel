@@ -8,13 +8,14 @@ QDaqcard::QDaqcard(QObject *parent) : QObject(parent)
 //析构时自动将继电器关闭
 QDaqcard::~QDaqcard()
 {
-    D2K_DO_WritePort(card_, Channel_P1A, 255);
-    D2K_Release_Card(card_);
+    //D2K_DO_WritePort(card_, Channel_P1A, 255);
+    //D2K_Release_Card(card_);
 }
 
 //DAQ card初始化函数，此时初始化的CARD为2213，AI采集口为0-6，输入为差分输入模式
 void QDaqcard::init()
 {
+	/*
     I16 err, card_num = 0, card_type=DAQ_2213;
     if ((card_=D2K_Register_Card (card_type, card_num)) <0 ) {
         logMsg(tr("Register_Card error=%1").arg(QString::number(card_)));
@@ -41,10 +42,12 @@ void QDaqcard::init()
     D2K_DIO_PortConfig(card_, Channel_P1CH,
     OUTPUT_PORT);
     D2K_DO_WritePort(card_, Channel_P1A, 255);
+	*/
 }
 //读取AI 0-6采集口的值，并发送信号。
 void QDaqcard::readAllChannel()
 {
+	/*
     if (!is_init_) return;
     QVector<double> res;
     F64 chan_voltage;
@@ -58,6 +61,7 @@ void QDaqcard::readAllChannel()
         res.push_back(chan_voltage);
     }
     emit sendAllData(res);
+	*/
 }
 //采集浪涌电流，channel从0-6，pointnum为采集数量
 void QDaqcard::getSurgeCurrent(U16 channel,QVector<double> &v,int point_num)
@@ -66,6 +70,7 @@ void QDaqcard::getSurgeCurrent(U16 channel,QVector<double> &v,int point_num)
     F64 chan_voltage;
     v.resize(point_num);
 
+	/*
     for (int i = 0;i<point_num;++i){
         if (i == int(point_num*0.2)){
             setDOPort(channel+1,true);
@@ -80,7 +85,7 @@ void QDaqcard::getSurgeCurrent(U16 channel,QVector<double> &v,int point_num)
         }
         v[i] = 2.5 - chan_voltage;
     }
-
+	*/
     return;
 }
 
@@ -143,5 +148,5 @@ void QDaqcard::setDOPort(uint port, bool status)
         break;
     }
     //DO operation
-    D2K_DO_WritePort(card_, Channel_P1A, m_DO_port_status_);
+    //D2K_DO_WritePort(card_, Channel_P1A, m_DO_port_status_);
 }
