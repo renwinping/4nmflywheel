@@ -40,6 +40,7 @@ void QCanDevice::recoveryFrame(uint target)
 
 bool QCanDevice::init()
 {
+	/*
     if (CANPortOpen( //open the CAN port
                      m_DevNum,
                      (WORD *)&m_nPort,
@@ -98,6 +99,8 @@ bool QCanDevice::init()
         CANPortClose(m_nPort);
         return 0;
     }
+
+	*/
     return true;
 //    logmsg("Open port successful, Press any key to begin send data!\n");
 }

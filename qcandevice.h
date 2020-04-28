@@ -12,7 +12,7 @@ class QCanDevice : public QObject
 public:
     explicit QCanDevice(QObject *parent = 0);
     ~QCanDevice(){
-        CANPortClose(m_nPort);
+        //CANPortClose(m_nPort);
     }
 
 signals:
